@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Forms Auto Filler</title>
+    <title>FormFlow</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Additional styles for CSV import */
@@ -48,7 +48,7 @@
     <div class="container">
         <div class="header">
             <img src="../images/icon-96.png" alt="Logo" class="logo">
-            <h1>Google Forms Auto Filler</h1>
+            <h1>FormFlow</h1>
         </div>
 
         <!-- CSV Import Section -->
@@ -76,6 +76,15 @@
                 <option value="MDY">MM/DD/YYYY</option>
             </select>
         </div>
+        <div class="settings">
+            <label for="highlightToggle">Outline questions</label>
+            <input type="checkbox" id="highlightToggle" checked>
+            <span class="hint">green = filled, red = needs you</span>
+        </div>
+        <div class="settings">
+            <label for="learnToggle">Offer to save new answers</label>
+            <input type="checkbox" id="learnToggle" checked>
+        </div>
 
         <div id="formData">
             <!-- Form rows will be added here dynamically -->
@@ -94,4 +103,4 @@
     <script src="../scripts/csvParser.js"></script>
     <script src="menu.js"></script>
 </body>
-</html>
+</html>

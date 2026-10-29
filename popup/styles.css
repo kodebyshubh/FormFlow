@@ -157,3 +157,8 @@ button:hover {
 #info-btn:hover {
     background-color: #0056b3;
 }
+
+.settings .hint {
+    font-size: 12px;
+    color: #777;
+}

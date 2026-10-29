@@ -1,50 +1,42 @@
 {
     "manifest_version": 3,
-    "name": "Google Forms Auto Filler",
-    "version": "0.9.9",
-
-    "description": "Automatically fills google forms. You can save your answers and it fills the form with your answers.",
-    "homepage_url": "https://github.com/muratalperen/GoogleFormsAutoFiller",
-
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "googleFormsAutoFiller@muratalperen"
-        }
-    },
-
+    "name": "FormFlow: Google Forms Autofill",
+    "version": "1.0.0",
+    "description": "Autofill Google Forms from your saved answers. Green means filled, red means needs you. Learns new answers as you go.",
+    "homepage_url": "https://github.com/kodebyshubh/GoogleFormsAutoFiller",
     "icons": {
+        "16": "images/icon-16.png",
         "32": "images/icon-32.png",
         "48": "images/icon-48.png",
-        "96": "images/icon-96.png"
+        "128": "images/icon-128.png"
     },
-
     "permissions": [
         "activeTab",
         "storage"
     ],
-
     "action": {
-        "default_icon": "images/icon-32.png",
-        "default_title": "Google Forms Auto Filler",
+        "default_icon": {
+            "16": "images/icon-16.png",
+            "32": "images/icon-32.png"
+        },
+        "default_title": "FormFlow",
         "default_popup": "popup/menu.html"
     },
-
     "background": {
         "service_worker": "background.js"
     },
-
     "content_scripts": [
         {
-            "matches": ["*://docs.google.com/forms/*"],
+            "matches": [
+                "*://docs.google.com/forms/*"
+            ],
             "js": [
                 "scripts/storage.js",
                 "scripts/GoogleForm.js"
             ]
         }
     ],
-
     "host_permissions": [
         "https://docs.google.com/*"
     ]
-
-}
+}

@@ -19,7 +19,7 @@
     }
 
     const STORAGE_KEYS = { formData: "formData", settings: "settings" };
-    const DEFAULT_SETTINGS = { dateFormat: "DMY" }; // "DMY" | "MDY" | "AUTO"
+    const DEFAULT_SETTINGS = { dateFormat: "DMY", highlight: true, learn: true }; // dateFormat: "DMY" | "MDY" | "AUTO"
 
     const MIGRATED_MARKER = "_migrated";
 

@@ -10,8 +10,8 @@ window.onload = function() {
 
     document.getElementById("addRowBtn").addEventListener("click", () => AddNewEntry());
     document.getElementById("donate-btn").addEventListener("click", () => window.open("https://buymeacoffee.com/muratserhatalperen", "_blank"));
-    document.getElementById("share-btn").addEventListener("click", () => window.open("https://github.com/muratalperen/GoogleFormsAutoFiller", "_blank"));
-    document.getElementById("info-btn").addEventListener("click", () => window.open("https://github.com/muratalperen/GoogleFormsAutoFiller/blob/master/Readme.md", "_blank"));
+    document.getElementById("share-btn").addEventListener("click", () => window.open("https://github.com/kodebyshubh/GoogleFormsAutoFiller", "_blank"));
+    document.getElementById("info-btn").addEventListener("click", () => window.open("https://github.com/kodebyshubh/GoogleFormsAutoFiller#readme", "_blank"));
     
     // CSV Import functionality
     document.getElementById("uploadCsvBtn").addEventListener("click", handleCsvUpload);
@@ -23,9 +23,27 @@ window.onload = function() {
 
     // Date-format setting
     setupDateFormatSetting();
+    setupToggleSetting("highlightToggle", "highlight");
+    setupToggleSetting("learnToggle", "learn");
 
     GFAFStorage.migrateSyncToLocal(() => {
         DisplayData();
+    });
+}
+
+/**
+ * Checkbox settings stored in chrome.storage: outlines and learn mode.
+ */
+function setupToggleSetting(id, key) {
+    const box = document.getElementById(id);
+    if (!box) return;
+    GFAFStorage.getSettings((error, settings) => {
+        box.checked = !(settings && settings[key] === false);
+    });
+    box.addEventListener("change", function() {
+        GFAFStorage.setSettings({ [key]: box.checked }, (error) => {
+            if (error) showStatus("Failed to save setting: " + error.message, false);
+        });
     });
 }
 
@@ -268,4 +286,4 @@ function objectIsEmpty(object) {
     }
 
     return isEmpty;
-}
+}

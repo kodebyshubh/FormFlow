@@ -1,0 +1,111 @@
+<!doctype html><html><body>
+<style>[role=radio],[role=checkbox]{display:inline-block;width:16px;height:16px;border:1px solid #888;margin:4px;vertical-align:middle}[aria-checked=true]{background:#1a73e8}[role=listbox]{display:block;min-height:20px;border:1px solid #888}.shown{min-height:18px}</style><form>
+<div role="list">
+
+ <div role="listitem" id="q-name"><div role="heading" aria-level="3"><span>Full name</span><span aria-label="Required question"> *</span></div>
+   <input type="text" aria-label="Your answer"></div>
+
+ <div role="listitem" id="q-email"><div role="heading"><span>Email Address</span> *</div>
+   <input type="email" aria-label="Your answer"></div>
+
+ <div role="listitem" id="q-bio"><div role="heading"><span>About you</span></div>
+   <textarea aria-label="Your answer"></textarea></div>
+
+ <div role="listitem" id="q-dob"><div role="heading"><span>Date of birth</span></div>
+   <input type="date"></div>
+
+ <div role="listitem" id="q-gender"><div role="heading"><span>Gender</span> *</div>
+   <div role="radiogroup" aria-labelledby="x">
+     <label><div role="radio" aria-label="Male" data-value="Male" aria-checked="false" tabindex="0"></div>Male</label>
+     <label><div role="radio" aria-label="Female" data-value="Female" aria-checked="false" tabindex="0"></div>Female</label>
+     <label><div role="radio" aria-label="Prefer not to say" data-value="Prefer not to say" aria-checked="false" tabindex="0"></div>Prefer not to say</label>
+   </div></div>
+
+ <div role="listitem" id="q-branch"><div role="heading"><span>Branch</span></div>
+   <div role="radiogroup">
+     <div role="radio" aria-label="Computer Science and Engineering" data-value="Computer Science and Engineering" aria-checked="false"></div>
+     <div role="radio" aria-label="Mechanical" data-value="Mechanical" aria-checked="false"></div>
+     <div role="radio" aria-label="Other:" data-value="__other_option__" aria-checked="false"></div>
+     <input type="text" aria-label="Other response">
+   </div></div>
+
+ <div role="listitem" id="q-skills"><div role="heading"><span>Skills</span></div>
+   <div role="group">
+     <div role="checkbox" aria-label="Python" data-answer-value="Python" aria-checked="false"></div>
+     <div role="checkbox" aria-label="Java" data-answer-value="Java" aria-checked="false"></div>
+     <div role="checkbox" aria-label="JavaScript" data-answer-value="JavaScript" aria-checked="false"></div>
+     <div role="checkbox" aria-label="C++" data-answer-value="C++" aria-checked="false"></div>
+   </div></div>
+
+ <div role="listitem" id="q-year"><div role="heading"><span>Current year</span></div>
+   <div role="listbox" class="dd" aria-expanded="false">
+     <div class="shown"></div>
+     <div class="hiddencopy" style="display:none">
+       <div role="option" data-value="" aria-selected="true">Choose</div>
+       <div role="option" data-value="First year">First year</div>
+       <div role="option" data-value="Final year">Final year</div>
+     </div>
+     <div class="popup" style="display:none">
+       <div role="option" data-value="">Choose</div>
+       <div role="option" data-value="First year">First year</div>
+       <div role="option" data-value="Final year">Final year</div>
+     </div>
+   </div></div>
+
+ <div role="listitem" id="q-time"><div role="heading"><span>Preferred call time</span></div>
+   <input type="text" aria-label="Hour"> : <input type="text" aria-label="Minute">
+   <div role="listbox" class="dd">
+     <div class="shown"></div>
+     <div class="hiddencopy" style="display:none"><div role="option" data-value="AM">AM</div><div role="option" data-value="PM">PM</div></div>
+     <div class="popup" style="display:none"><div role="option" data-value="AM">AM</div><div role="option" data-value="PM">PM</div></div>
+   </div></div>
+
+ <div role="listitem" id="q-grid"><div role="heading"><span>Rate these</span></div>
+   <div role="radiogroup"><div role="radio" aria-label="Good, response for Food" data-value="Good" aria-checked="false"></div></div>
+   <div role="radiogroup"><div role="radio" aria-label="Good, response for Service" data-value="Good" aria-checked="false"></div></div></div>
+
+ <div role="listitem" id="q-header"><div role="heading"><span>About this section</span></div><div>Please read carefully.</div></div>
+
+ <div role="listitem" id="q-hobby"><div role="heading"><span>Hobbies</span></div>
+   <input type="text" aria-label="Your answer"></div>
+
+ <div role="listitem" id="q-file"><div role="heading"><span>Upload resume *</span></div>
+   <div>Upload 1 supported file: PDF. Max 10 GB.</div><div role="button">Add file</div></div>
+
+ <div role="listitem" id="q-prog"><div role="heading"><span>Program</span></div>
+   <div role="radiogroup">
+     <div role="radio" aria-label="B.Tech" data-value="B.Tech" aria-checked="false"></div>
+     <div role="radio" aria-label="BCA" data-value="BCA" aria-checked="false"></div>
+   </div></div>
+
+ <div role="listitem" id="q-scale"><div role="heading"><span>Rating</span></div>
+   <div role="radiogroup">
+     <div role="radio" aria-label="1" data-value="1" aria-checked="false"></div>
+     <div role="radio" aria-label="2" data-value="2" aria-checked="false"></div>
+     <div role="radio" aria-label="3" data-value="3" aria-checked="false"></div>
+     <div role="radio" aria-label="4" data-value="4" aria-checked="false"></div>
+     <div role="radio" aria-label="5" data-value="5" aria-checked="false"></div>
+   </div></div>
+
+</div></form>
+<script>
+// ---- mimic Google's widgets, including DOM churn (a ripple node) on every click ----
+function ripple(el){ const r=document.createElement('span'); r.className='ripple'; el.appendChild(r); setTimeout(()=>r.remove(),30); }
+window.__clicks = [];
+document.addEventListener('click', e => {
+  const t = e.target.closest('[role=radio],[role=checkbox],[role=option],[role=listbox]');
+  if(!t) return;
+  window.__clicks.push(t.getAttribute('role') + ':' + (t.getAttribute('data-value')||t.getAttribute('data-answer-value')||''));
+  ripple(t);
+  const role = t.getAttribute('role');
+  if((role==='radio'||role==='checkbox') && window.__flaky && !t.__seen){ t.__seen = true; return; }
+  if(role==='radio'){ t.closest('[role=radiogroup]').querySelectorAll('[role=radio]').forEach(r=>r.setAttribute('aria-checked','false')); t.setAttribute('aria-checked','true'); }
+  else if(role==='checkbox'){ t.setAttribute('aria-checked', t.getAttribute('aria-checked')==='true'?'false':'true'); }
+  else if(role==='listbox'){ const p=t.querySelector('.popup'); const open = p.style.display==='none'; p.style.display = open?'block':'none'; t.setAttribute('aria-expanded', open?'true':'false'); if(open) t.__openedAt = Date.now(); }
+  else if(role==='option'){ const lb=t.closest('[role=listbox]'); const popup=t.closest('.popup'); if(!popup) return; if(Date.now() - (lb.__openedAt||0) < 500) return; /* Google ignores clicks while opening */ lb.setAttribute('aria-expanded','false');
+      lb.querySelectorAll('[role=option]').forEach(o=>o.removeAttribute('aria-selected'));
+      lb.querySelectorAll('[role=option]').forEach(o=>{ if(o.getAttribute('data-value')===t.getAttribute('data-value')) o.setAttribute('aria-selected','true'); });
+      lb.querySelector('.shown').textContent = t.getAttribute('data-value'); popup.style.display='none'; e.stopPropagation(); }
+}, true);
+</script>
+</body></html>

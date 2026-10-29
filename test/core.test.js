@@ -114,6 +114,50 @@ eq(findBestMatch("Username", fd), null, "match: 'Username' does NOT reach 'Name'
 // Documented residual of token coverage: a content word collides with a key.
 eq(findBestMatch("Project Name", fd), "Name", "match: 'Project Name' -> 'Name' (accepted residual)");
 
+// Ties between equally good keys: the closest-length key must win.
+const emailKeys = { "College Email id": "college@x.edu", "Email ID": "me@gmail.com" };
+eq(findBestMatch("Email ID", emailKeys), "Email ID", "tie: 'Email ID' prefers exact key over 'College Email id'");
+eq(findBestMatch("Email ID", { "Email ID": "a", "College Email id": "b" }), "Email ID", "tie: order of keys does not matter");
+eq(findBestMatch("College Email id", emailKeys), "College Email id", "tie: college email question still gets the college key");
+eq(findBestMatch("College Name", { "College / University Name": "x", "College": "y" }), "College", "tie: shortest-distance key wins for College Name");
+
+// ===================== Choice-question helpers =====================
+const matchOption = sandbox.matchOption;
+const matchMany = sandbox.matchMany;
+const splitMultiAnswer = sandbox.splitMultiAnswer;
+const parseTime = sandbox.parseTime;
+const cleanTitle = sandbox.cleanTitle;
+
+eq(cleanTitle("Full name *"), "Full name", "title: trailing asterisk stripped");
+eq(cleanTitle("  Email   address  "), "Email address", "title: whitespace collapsed");
+
+eq(matchOption("male", ["Male", "Female", "Other"]), 0, "option: exact, case-insensitive");
+eq(matchOption("Female", ["Male", "Female"]), 1, "option: Female is not confused with Male");
+eq(matchOption("Computr Science", ["Mechanical", "Computer Science"]), 1, "option: close spelling matches");
+eq(matchOption("Computer Science", ["Computer Science and Engineering", "Mechanical"]), 0, "option: unique whole-word containment");
+eq(matchOption("Engineering", ["Computer Engineering", "Mechanical Engineering"]), -1, "option: ambiguous containment rejected");
+eq(matchOption("Bangalore", ["Delhi", "Mumbai"]), -1, "option: no match returns -1");
+eq(matchOption("", ["A"]), -1, "option: empty answer returns -1");
+eq(matchOption("No", ["Not sure", "No"]), 1, "option: short answer exact only");
+eq(matchOption("4", ["1", "2", "3", "4", "5"]), 3, "option: linear-scale number");
+
+eq(splitMultiAnswer("Python, Java; C++ | Go\nRust"), ["Python", "Java", "C++", "Go", "Rust"], "split: commas, semicolons, pipes, newlines");
+eq(matchMany("Python, Java", ["Python", "Java", "C++"]), [0, 1], "many: two of three options");
+eq(matchMany("Python, Rust", ["Python", "Java"]), [0], "many: unknown token ignored");
+eq(matchMany("Tea, with milk", ["Tea, with milk", "Coffee"]), [0], "many: label containing a comma kept whole");
+eq(matchMany("Java", ["Java", "JavaScript"]), [0], "many: Java does not select JavaScript");
+eq(matchMany("", ["A", "B"]), [], "many: empty answer selects nothing");
+
+eq(parseTime("9:30 PM"), { h24: 21, min: 30 }, "time: 12-hour PM");
+eq(parseTime("9.30pm"), { h24: 21, min: 30 }, "time: dot and compact meridiem");
+eq(parseTime("12:05 AM"), { h24: 0, min: 5 }, "time: 12 AM is hour 0");
+eq(parseTime("12:00 PM"), { h24: 12, min: 0 }, "time: 12 PM is hour 12");
+eq(parseTime("21:45"), { h24: 21, min: 45 }, "time: 24-hour");
+eq(parseTime("25:00"), null, "time: invalid hour rejected");
+eq(parseTime("10:75"), null, "time: invalid minute rejected");
+eq(parseTime("13:00 PM"), null, "time: 13 with meridiem rejected");
+eq(parseTime("lunch"), null, "time: text rejected");
+
 // ===================== Report =====================
 console.log("");
 for (const f of failures) console.log(f);

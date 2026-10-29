@@ -1,5 +1,17 @@
 # Changelog
 
+### 1.0.0 (FormFlow)
+
+- Renamed to FormFlow with new icon; Firefox-specific manifest block removed (Chrome first).
+- Added: multiple choice (with Other), checkboxes, dropdowns, time and linear scale autofill, with retry logic for Google's slow dropdown animation.
+- Added: green/red review outlines, tooltips explaining each, and a summary badge with a "next question" button. Every file upload is flagged red.
+- Added: learn mode (save or update answers from the form itself; paragraph questions excluded).
+- Added: each question is filled once so your edits are never overwritten.
+- Added: tie-break by closest length when two saved keys score equally (Email ID vs College Email id).
+- Added: quiet wait on "already responded" pages instead of an error.
+- Added: Chromium end-to-end test suite (`test/e2e`).
+- Popup: toggles for outlines and for offering to save new answers.
+
 ### Unreleased
 
 - Fixed: Email fields (and any field whose heading spans multiple DOM nodes) not autofilling, caused by only reading the heading's first child node instead of its full text.
@@ -19,4 +31,4 @@
 - Script base made modular
 - Added OnInput, OnChange event call to simulate user.
 - Fuzzy Select by LevenshteinDistance algorithm
-- Added links
+- Added links
