@@ -27,11 +27,14 @@ REVIEW AT A GLANCE
 LEARNS AS YOU GO
 Answer a red question yourself and FormFlow offers to save it for next time. Change a filled answer and it offers to update it. Nothing is saved without your click.
 
+START EMPTY OR START FAST
+No need to fill in everything first. Save answers as you go: fill a new question once, click Save, and it fills itself on every form after that. Or import a ready-made CSV template of about 50 common questions.
+
 SAFE BY DESIGN
 - Fills each question once, so your edits are never overwritten
 - Never submits the form for you
 - All data stays in your browser. No account, no server, no tracking
-- Import all your answers from a CSV file in seconds
+- Import answers from a CSV in seconds and export them any time as a backup
 
 Open source (MIT), based on GoogleFormsAutoFiller by Murat Serhat Alperen.
 
@@ -45,8 +48,7 @@ Autofill Google Forms questions from answers the user saves in the extension.
 - Remote code: none. No data is collected or transmitted.
 
 ## Privacy policy URL
-https://github.com/kodebyshubh/GoogleFormsAutoFiller/blob/v1-features/PRIVACY.md
-(after merging to master, change v1-features to master)
+https://github.com/kodebyshubh/FormFlow/blob/master/PRIVACY.md
 
 ## Data usage disclosures
 Collects no user data. Tick none of the data-collection boxes. Certify: not sold, not used for unrelated purposes, not used for creditworthiness.

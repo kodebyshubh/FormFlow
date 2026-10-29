@@ -158,6 +158,15 @@ eq(parseTime("10:75"), null, "time: invalid minute rejected");
 eq(parseTime("13:00 PM"), null, "time: 13 with meridiem rejected");
 eq(parseTime("lunch"), null, "time: text rejected");
 
+
+// ===================== CSV export (round trip) =====================
+const stringifyCSV = sandbox.GFAFCsv.stringifyCSV;
+const tricky = { "Full Name": "Shubh", 'He said "hi"': "a, b", "bio": "line1\nline2", "12th %": "82.6", "key,comma": "padded" };
+eq(parseCSV(stringifyCSV(tricky)), tricky, "CSV export: round-trips commas, quotes, newlines");
+eq(parseCSV("\uFEFF" + stringifyCSV({ a: "1" })), { a: "1" }, "CSV export: BOM prefix is accepted on re-import");
+eq(stringifyCSV({}), "\r\n", "CSV export: empty data gives no rows");
+eq(parseCSV(stringifyCSV({ a: "", b: "2" })), { b: "2" }, "CSV export: empty values are skipped");
+
 // ===================== Report =====================
 console.log("");
 for (const f of failures) console.log(f);

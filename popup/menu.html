@@ -25,6 +25,8 @@
         .file-input-container input[type="file"] {
             flex: 1;
         }
+        .hint-text { font-size: 11px; color: #5f6368; margin-top: 6px; }
+        #exportCsvBtn { margin-top: 8px; }
         .csv-options {
             margin: 10px 0;
         }
@@ -65,6 +67,8 @@
                 </label>
             </div>
             <div id="importStatus" class="status-message"></div>
+            <button id="exportCsvBtn" type="button">Export answers (CSV backup)</button>
+            <div class="hint-text">Back up before removing or moving the extension. Removing it deletes saved answers.</div>
         </div>
 
         <!-- Settings Section -->
@@ -103,4 +107,4 @@
     <script src="../scripts/csvParser.js"></script>
     <script src="menu.js"></script>
 </body>
-</html>
+</html>

@@ -10,8 +10,8 @@ window.onload = function() {
 
     document.getElementById("addRowBtn").addEventListener("click", () => AddNewEntry());
     document.getElementById("donate-btn").addEventListener("click", () => window.open("https://buymeacoffee.com/muratserhatalperen", "_blank"));
-    document.getElementById("share-btn").addEventListener("click", () => window.open("https://github.com/kodebyshubh/GoogleFormsAutoFiller", "_blank"));
-    document.getElementById("info-btn").addEventListener("click", () => window.open("https://github.com/kodebyshubh/GoogleFormsAutoFiller#readme", "_blank"));
+    document.getElementById("share-btn").addEventListener("click", () => window.open("https://github.com/kodebyshubh/FormFlow", "_blank"));
+    document.getElementById("info-btn").addEventListener("click", () => window.open("https://github.com/kodebyshubh/FormFlow#readme", "_blank"));
     
     // CSV Import functionality
     document.getElementById("uploadCsvBtn").addEventListener("click", handleCsvUpload);
@@ -21,6 +21,8 @@ window.onload = function() {
         }
     });
 
+    document.getElementById("exportCsvBtn").addEventListener("click", handleCsvExport);
+
     // Date-format setting
     setupDateFormatSetting();
     setupToggleSetting("highlightToggle", "highlight");
@@ -28,6 +30,27 @@ window.onload = function() {
 
     GFAFStorage.migrateSyncToLocal(() => {
         DisplayData();
+    });
+}
+
+/**
+ * Download every saved answer as a CSV file (backup, and re-importable).
+ */
+function handleCsvExport() {
+    GFAFStorage.getFormData((error, data) => {
+        if (error) { showStatus("Export failed: " + error.message, false); return; }
+        const count = Object.keys(data || {}).length;
+        if (!count) { showStatus("Nothing to export yet.", false); return; }
+        const csv = "\uFEFF" + GFAFCsv.stringifyCSV(data);
+        const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "formflow-answers-" + new Date().toISOString().slice(0, 10) + ".csv";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        showStatus("Exported " + count + " answers to your Downloads folder.", true);
     });
 }
 
@@ -286,4 +309,4 @@ function objectIsEmpty(object) {
     }
 
     return isEmpty;
-}
+}

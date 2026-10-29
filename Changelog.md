@@ -10,6 +10,8 @@
 - Added: tie-break by closest length when two saved keys score equally (Email ID vs College Email id).
 - Added: quiet wait on "already responded" pages instead of an error.
 - Added: Chromium end-to-end test suite (`test/e2e`).
+- Added: **Export answers (CSV backup)** button in the popup; the file re-imports with the same Upload CSV button.
+- Added: `sample-answers.csv`, a placeholder-only template of about 50 common form questions.
 - Popup: toggles for outlines and for offering to save new answers.
 
 ### Unreleased
@@ -31,4 +33,4 @@
 - Script base made modular
 - Added OnInput, OnChange event call to simulate user.
 - Fuzzy Select by LevenshteinDistance algorithm
-- Added links
+- Added links

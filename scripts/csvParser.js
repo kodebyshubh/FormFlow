@@ -216,8 +216,25 @@
         reader.readAsText(file);
     }
 
+    /**
+     * Turn { key: value } into CSV text (the inverse of parseCSV).
+     * Fields containing a comma, quote or newline are quoted and inner quotes doubled.
+     * Rows end with CRLF so Excel and Notepad both open it cleanly.
+     */
+    function stringifyCSV(data) {
+        const cell = (v) => {
+            const t = String(v === null || v === undefined ? "" : v);
+            return /[",\r\n]/.test(t) || t !== t.trim() ? '"' + t.replace(/"/g, '""') + '"' : t;
+        };
+        return Object.keys(data || {})
+            .filter(k => String(k).trim() !== "" && String(data[k]).trim() !== "")
+            .map(k => cell(k) + "," + cell(data[k]))
+            .join("\r\n") + "\r\n";
+    }
+
     globalThis.GFAFCsv = {
         parseCSV,
+        stringifyCSV,
         processCSVFile
     };
 })();

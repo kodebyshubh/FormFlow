@@ -3,7 +3,7 @@
     "name": "FormFlow: Google Forms Autofill",
     "version": "1.0.0",
     "description": "Autofill Google Forms from your saved answers. Green means filled, red means needs you. Learns new answers as you go.",
-    "homepage_url": "https://github.com/kodebyshubh/GoogleFormsAutoFiller",
+    "homepage_url": "https://github.com/kodebyshubh/FormFlow",
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",
