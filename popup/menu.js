@@ -9,7 +9,17 @@ window.onload = function() {
     port = chrome.runtime.connect({ name: "popupSession" });
 
     document.getElementById("addRowBtn").addEventListener("click", () => AddNewEntry());
-    document.getElementById("donate-btn").addEventListener("click", () => window.open("https://buymeacoffee.com/muratserhatalperen", "_blank"));
+    document.getElementById("donate-btn").addEventListener("click", () => {
+        const panel = document.getElementById("supportPanel");
+        panel.hidden = !panel.hidden;
+        if (!panel.hidden) panel.scrollIntoView({ block: "nearest" });
+    });
+    document.getElementById("bmcBtn").addEventListener("click", () => window.open("https://www.buymeacoffee.com/shubhbohra", "_blank"));
+    document.getElementById("copyUpiBtn").addEventListener("click", function() {
+        const id = document.getElementById("upiId").textContent;
+        const done = () => { this.textContent = "Copied"; setTimeout(() => { this.textContent = "Copy"; }, 1500); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(id).then(done, () => {});
+    });
     document.getElementById("share-btn").addEventListener("click", () => window.open("https://github.com/kodebyshubh/FormFlow", "_blank"));
     document.getElementById("info-btn").addEventListener("click", () => window.open("https://github.com/kodebyshubh/FormFlow#readme", "_blank"));
     

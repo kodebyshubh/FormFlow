@@ -60,6 +60,13 @@ node test/e2e/run.js
 
 Considered and **not needed** for now: resume import, semantic (embedding) matching, multiple profiles, AI drafts for paragraph questions.
 
+## Support
+
+FormFlow is free. If it saved you time, you can support it, entirely optional:
+
+- [Buy me a coffee](https://www.buymeacoffee.com/shubhbohra)
+- UPI (India): `shubhbohra44-4@okicici`, or scan the QR in the extension popup (**Support** button).
+
 ## Credits and license
 
 MIT. Original work by Murat Serhat Alperen. Improvements by Shubh Bohra. See [LICENSE](LICENSE).

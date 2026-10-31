@@ -12,6 +12,8 @@ FormFlow is a Chrome extension that fills Google Forms from answers you save.
 
 **Permissions:** `storage` keeps your saved answers; `activeTab` lets the popup tell the open form to refill; host access to `docs.google.com` lets the content script run on Google Forms.
 
+**Optional support links:** the popup has a Support panel with a Buy Me a Coffee link and a UPI QR code. Clicking the link opens an external page. FormFlow never sees or stores any payment information.
+
 **Your control:** you can edit or delete any saved answer in the popup, or remove the extension to delete everything.
 
 **Contact:** shubhbohra44@gmail.com

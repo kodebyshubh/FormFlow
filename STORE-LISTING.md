@@ -36,6 +36,8 @@ SAFE BY DESIGN
 - All data stays in your browser. No account, no server, no tracking
 - Import answers from a CSV in seconds and export them any time as a backup
 
+Free to use. An optional Support panel in the popup lets you tip the developer, never required.
+
 Open source (MIT), based on GoogleFormsAutoFiller by Murat Serhat Alperen.
 
 ## Single purpose
